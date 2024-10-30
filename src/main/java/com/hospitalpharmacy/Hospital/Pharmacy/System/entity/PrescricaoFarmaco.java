@@ -1,38 +1,37 @@
 package com.hospitalpharmacy.Hospital.Pharmacy.System.entity;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "tb_medicos")
-public class Medico {
+@Table(name = "tb_prescricoesFarmacos")
+public class PrescricaoFarmaco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "O nome do médico é obrigatório.")
-	private String nome;
+	@ManyToOne
+	@JoinColumn(name = "prescricao_id")
+	private Prescricao prescricao;
 	
-	@NotBlank(message = "O crm do médico é obrigatório.")
-	private String crm;
+	@ManyToOne
+	@JoinColumn(name = "farmaco_id")
+	private Farmaco farmaco;
 	
-	@OneToMany(mappedBy = "medico")
-	private List<Prescricao> prescricoes;
-	
+	private int quantidadePrescrita;
 }

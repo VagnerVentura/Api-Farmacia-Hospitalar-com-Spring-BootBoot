@@ -36,9 +36,7 @@ public class Prescricao {
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
 	
-	@OneToMany
-	@JoinColumn(name = "prescricao_id")
-	private List<Farmaco> farmaco;
-	
+	@OneToMany(mappedBy = "prescricao")
+	private List<PrescricaoFarmaco> farmacos;
 	
 }
