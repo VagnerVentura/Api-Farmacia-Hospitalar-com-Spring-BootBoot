@@ -1,12 +1,12 @@
 package com.hospitalpharmacy.Hospital.Pharmacy.System.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,19 +17,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_farmacos")
-public class Farmaco {
-	
+@Table(name = "tb_dispensacoes")
+public class Dispensacao {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
 	
-	@NotBlank(message = "O nome do medicamento é obrigatório.")
-	private String name;
-
-    @NotNull(message = "A dosagem é obrigatória.")
-	private Double dosagem;
-    
-	private String apresentação;
+	private Prescricao prescricao;
+	private Farmaco farmaco;
+	private int qtdDispensada;
+	private LocalDateTime dataDispensacao;
 	
 }
