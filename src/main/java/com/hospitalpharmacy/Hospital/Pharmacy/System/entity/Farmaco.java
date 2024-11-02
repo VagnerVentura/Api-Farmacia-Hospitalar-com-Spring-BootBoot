@@ -1,12 +1,9 @@
 package com.hospitalpharmacy.Hospital.Pharmacy.System.entity;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,6 +20,16 @@ import lombok.Setter;
 @Table(name = "tb_farmacos")
 public class Farmaco {
 	
+	
+	public Farmaco(String name, @NotNull(message = "A dosagem é obrigatória.") String dosagem, String apresentacao) {
+		
+		this.name = name;
+	    this.dosagem = dosagem;
+	    this.apresentacao = apresentacao;
+//	    this.prescricoes = new ArrayList<>(); // Inicialização lazy
+
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -31,11 +38,11 @@ public class Farmaco {
 	private String name;
 
     @NotNull(message = "A dosagem é obrigatória.")
-	private Double dosagem;
+	private String dosagem;
     
-	private String apresentação;
+	private String apresentacao;
 	
-	@OneToMany(mappedBy = "farmaco")
-	private List<PrescricaoFarmaco> prescricoes;
+//	@OneToMany(mappedBy = "farmaco")
+//	private List<PrescricaoFarmaco> prescricoes;
 	
 }
